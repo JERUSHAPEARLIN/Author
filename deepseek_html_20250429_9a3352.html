@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula 1 - Speed & Passion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Teko:wght@300;600&display=swap');
+        
+        :root {
+            --f1-red: #e10600;
+            --carbon: #1e1e1e;
+            --speed-blue: #00a0e1;
+        }
+        
+        body {
+            margin: 0;
+            background-color: var(--carbon);
+            color: white;
+            font-family: 'Teko', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--carbon) 0%, var(--f1-red) 50%, var(--carbon) 100%);
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(225, 6, 0, 0.7);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .track {
+            height: 100px;
+            background: repeating-linear-gradient(
+                90deg,
+                #fff,
+                #fff 20px,
+                var(--carbon) 20px,
+                var(--carbon) 40px
+            );
+            position: relative;
+            margin: 50px 0;
+            overflow: hidden;
+        }
+        
+        .car {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            background: var(--f1-red);
+            border-radius: 10px;
+            top: 25px;
+            left: -100px;
+            animation: race 8s linear infinite;
+            box-shadow: 0 0 20px var(--f1-red);
+        }
+        
+        .car:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--speed-blue);
+            border-radius: 50%;
+            top: -10px;
+            left: 10px;
+            box-shadow: 40px 0 var(--speed-blue), 80px 0 var(--speed-blue);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .stat-card {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid var(--f1-red);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--f1-red);
+        }
+        
+        .stat-value {
+            font-size: 3rem;
+            color: var(--speed-blue);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        footer {
+            background-color: var(--carbon);
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid var(--f1-red);
+        }
+        
+        @keyframes race {
+            0% { left: -100px; }
+            100% { left: 100%; }
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 15px rgba(225, 6, 0, 0.7); }
+            100% { text-shadow: 0 0 25px rgba(225, 6, 0, 1), 0 0 35px rgba(0, 160, 225, 0.5); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Formula 1</h1>
+        <p style="font-size: 1.5rem; margin-top: 10px;">Speed. Passion. Innovation.</p>
+    </header>
+    
+    <div class="track">
+        <div class="car"></div>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-value">23</div>
+            <div class="stat-name">RACES IN 2023</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">1000+</div>
+            <div class="stat-name">HORSEPOWER</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">5G</div>
+            <div class="stat-name">CORNERING FORCE</div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 FORMULA 1 WORLD CHAMPIONSHIP LIMITED</p>
+    </footer>
+</body>
+</html>

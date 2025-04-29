@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 ULTIMATE EXPERIENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --f1-red: #ff1801;
+            --carbon: #0f0f0f;
+            --neon-blue: #00f0ff;
+            --tyre-yellow: #ffd700;
+        }
+        
+        body {
+            margin: 0;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            color: white;
+            font-family: 'Russo One', sans-serif;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+        
+        /* 3D Animated Header */
+        .header-container {
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #000 0%, var(--f1-red) 100%);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            transform: rotateX(10deg);
+            box-shadow: 0 50px 70px rgba(255, 24, 1, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(to right, #fff 20%, var(--neon-blue) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        
+        /* Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Interactive Track */
+        .track-container {
+            position: relative;
+            height: 300px;
+            margin: 100px 0;
+            overflow: hidden;
+        }
+        
+        .track {
+            position: absolute;
+            width: 300%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(255,255,255,0.1) 50%, 
+                    transparent 100%),
+                repeating-linear-gradient(
+                    90deg,
+                    #fff,
+                    #fff 2px,
+                    transparent 2px,
+                    transparent 40px
+                );
+            animation: trackMove 15s linear infinite;
+            transform: rotateX(60deg) rotateZ(-25deg);
+            transform-style: preserve-3d;
+        }
+        
+        /* 3D Cars */
+        .f1-car {
+            position: absolute;
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--f1-red) 0%, #ff5e4d 100%);
+            border-radius: 15px 15px 5px 5px;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 30px var(--f1-red);
+            animation: carDrive 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        
+        .f1-car:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .f1-car:nth-child(2) { top: 50%; animation-delay: -2s; }
+        .f1-car:nth-child(3) { top: 80%; animation-delay: -4s; }
+        
+        /* Driver Cards */
+        .drivers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px;
+        }
+        
+        .driver-card {
+            background: rgba(15, 15, 15, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .driver-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 20px 50px var(--f1-red);
+            border: 1px solid var(--f1-red);
+        }
+        
+        /* Animations */
+        @keyframes trackMove {
+            0% { transform: rotateX(60deg) rotateZ(-25deg) translateX(0); }
+            100% { transform: rotateX(60deg) rotateZ(-25deg) translateX(-50%); }
+        }
+        
+        @keyframes carDrive {
+            0% { left: -150px; transform: rotateY(0deg); }
+            49% { transform: rotateY(0deg); }
+            50% { left: 110%; transform: rotateY(180deg); }
+            100% { left: -150px; transform: rotateY(180deg); }
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 240, 255, 0.7); }
+            100% { text-shadow: 0 0 30px rgba(0, 240, 255, 1), 
+                             0 0 60px rgba(255, 24, 1, 0.7); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .drivers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="header-container">
+        <header>
+            <h1>F1 ULTIMATE</h1>
+            <p style="font-size: 1.8rem; letter-spacing: 3px; margin-top: 20px;">
+                THE FUTURE OF RACING
+            </p>
+        </header>
+    </div>
+    
+    <div class="track-container">
+        <div class="track"></div>
+        <div class="f1-car"></div>
+        <div class="f1-car" style="background: linear-gradient(135deg, #00f0ff 0%, #008cff 100%);"></div>
+        <div class="f1-car" style="background: linear-gradient(135deg, #ffd700 0%, #ff9500 100%);"></div>
+    </div>
+    
+    <div class="drivers-grid">
+        <div class="driver-card">
+            <div style="padding: 30px;">
+                <h3 style="color: var(--f1-red); font-size: 2rem; margin: 0;">MAX VERSTAPPEN</h3>
+                <p style="color: var(--neon-blue);">RED BULL RACING</p>
+                <div style="display: flex; margin-top: 20px;">
+                    <div style="flex: 1;">
+                        <p style="color: var(--tyre-yellow); font-size: 1.2rem;">WINS</p>
+                        <p style="font-size: 2.5rem; margin: 5px 0;">39</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <p style="color: var(--tyre-yellow); font-size: 1.2rem;">POLES</p>
+                        <p style="font-size: 2.5rem; margin: 5px 0;">27</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more driver cards here -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particle.js config
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#ff1801", "#00f0ff", "#ffd700"] },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.7, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 3, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            }
+        });
+
+        // Parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const track = document.querySelector('.track');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            track.style.transform = `rotateX(60deg) rotateZ(-25deg) translateX(0) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    </script>
+</body>
+</html>
